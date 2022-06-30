@@ -16,3 +16,4 @@ Directions: Use the mouse to click on a column to take stones from. Use the 1-3 
  *
  * The game ends when there are no more stones to pick up. A green circle
  * means the user won. A red X means the user lost.
+![nim](https://user-images.githubusercontent.com/55281163/176617630-d96b9545-46c6-4bf9-ad36-d8f44b8e6552.png)
