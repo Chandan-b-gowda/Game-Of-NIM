@@ -151,7 +151,39 @@ void myMouse(int butt, int state, int x, int y)
 		glutPostRedisplay();				//redisplay to show selection
 	}
 }
+//welcome dislpay front screen creating a front page
+void welcomeDisplay()
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glColor3f(1, 0, 0);
 
+	glRasterPos3f(-0.4, 0.9, 0);
+	char msg1[] = "NIM using Heap alogorithem";
+	for(int i=0;i<strlen(msg1);i++)
+	glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, msg1[i]);
+
+	glRasterPos3f(-0.9, 0.8, 0);
+	char msg2[] = "submitted by :";
+	for (int i = 0; i < strlen(msg2); i++)
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, msg2[i]);
+
+	glRasterPos3f(-0.8, 0.7, 0);
+	char msg3[] = "Chandan B Gowda | 4VV19CS029";
+	for (int i = 0; i < strlen(msg3); i++)
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, msg3[i]);
+
+	glRasterPos3f(-0.8, 0.6, 0);
+	char msg4[] = "Akshay Kumar C | 4VV19CS004";
+	for (int i = 0; i < strlen(msg4); i++)
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, msg4[i]);
+
+	glRasterPos3f(-0.4, -0.9, 0);
+	char msg5[] = "press x to start the game";
+	for (int i = 0; i < strlen(msg5); i++)
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, msg5[i]);
+
+	glutSwapBuffers();
+}
 
 //The keyboard callback
 void myKeyboard(char key, int x, int y) {
@@ -160,7 +192,12 @@ void myKeyboard(char key, int x, int y) {
 	if (k == 27)					//if the user types ESC
 		exit(0);					//exit the program
 	//if the user types 1-3, a pile has been selected, and it is the user's turn
-	else if (k >= 49 && k <= 51 && curPile != -1 && turn == 0) {
+	if (k == 'x')
+	{
+		glutDisplayFunc(display);
+	}
+	else if (k >= 49 && k <= 51 && curPile != -1 && turn == 0) 
+	{
 		k -= 48;
 		if (piles[curPile] >= k)		//if there are enough rocks in the pile,
 			piles[curPile] -= k;	//remove k rocks
@@ -225,7 +262,7 @@ int main(int argc, char** argv)
 
 	glutInitWindowPosition(0, 0);					//window position
 	glutInitWindowSize(WINDOW_SIZE, WINDOW_SIZE);	//window size
-	glutCreateWindow("The Game of Nim");			//window name
+	glutCreateWindow("NIM using Heap sort algorithem");			//window name
 	glClearColor(0.0, 0.0, 0.0, 0.0);				//background color
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -236,7 +273,7 @@ int main(int argc, char** argv)
 	glMatrixMode(GL_MODELVIEW);						// back to modelview m.
 
 	srand(time(NULL));								// seed the random number generator
-	glutDisplayFunc(display);
+	glutDisplayFunc(welcomeDisplay);
 	glutMouseFunc(myMouse);
 	glutKeyboardFunc(myKeyboard);
 	glutSpecialFunc(mySpecialKey);
